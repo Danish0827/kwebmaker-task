@@ -4,11 +4,15 @@
   --background: #ffffff;
   --foreground: #171717;
 }
+:root {
+  font-family: var(--font-dm-sans), sans-serif;
+  /* letter-spacing: 3px; */
+}
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-dm-sans: var(--font-dm-sans);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -20,7 +24,15 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: white;
+  color: black;
+  font-family: var(--font-dm-sans), sans-serif;
+}
+
+.about-span-green span {
+    font-weight: 700;
+    color: #99B81B;
+}
+html {
+  scroll-behavior: smooth;
 }

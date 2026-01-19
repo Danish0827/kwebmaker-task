@@ -1,29 +1,16 @@
 "use client";
+import { textMarqueeData } from "@/data/textMarqueeData";
 
-import React from "react";
+export default function TextMarquee() {
+  const { items, outlineItems = [], speed = 18, accentColor = "#97B81B", dot = "•" } = textMarqueeData;
 
-type Props = {
-  items: string[];
-  speed?: number;
-  dot?: string;
-  accentColor?: string;
-  outlineItems?: string[];
-};
-
-export default function TextMarquee({
-  items,
-  speed = 18,
-  dot = "•",
-  accentColor = "#97B81B",
-  outlineItems = [],
-}: Props) {
   const content = items.flatMap((t, i) => [
     { text: t, idx: i },
     { text: dot, idx: `dot-${i}` as any },
   ]);
 
   return (
-    <div className="w-full overflow-hidden bg-white pt-10 pb-20">
+    <div className="w-full hidden lg:block overflow-hidden bg-white pt-10 pb-20">
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0); }
@@ -34,20 +21,10 @@ export default function TextMarquee({
       <div className="relative w-full">
         <div
           className="flex w-[200%] whitespace-nowrap"
-          style={{
-            animation: `marquee ${speed}s linear infinite`,
-          }}
+          style={{ animation: `marquee ${speed}s linear infinite` }}
         >
-          <MarqueeRow
-            content={content}
-            accentColor={accentColor}
-            outlineItems={outlineItems}
-          />
-          <MarqueeRow
-            content={content}
-            accentColor={accentColor}
-            outlineItems={outlineItems}
-          />
+          <MarqueeRow content={content} accentColor={accentColor} outlineItems={outlineItems} />
+          <MarqueeRow content={content} accentColor={accentColor} outlineItems={outlineItems} />
         </div>
       </div>
     </div>
@@ -90,7 +67,6 @@ function MarqueeRow({
                 ? {
                     color: "transparent",
                     WebkitTextStroke: `2px ${accentColor}`,
-                    textStroke: `2px ${accentColor}` as any,
                   }
                 : { color: accentColor }
             }
